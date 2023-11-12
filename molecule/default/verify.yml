@@ -1,0 +1,19 @@
+---
+- name: Verify
+  hosts: all
+  become: false
+  gather_facts: false
+
+  vars_files:
+    - ../../defaults/main.yml
+
+  tasks:
+    - name: Check the minikube version.
+      command: "{{ minikube_bin_path }} version --short"
+      changed_when: false
+      register: minikube_verify_version
+
+    - name: Verify minikube's version is {{ minikube_version }}
+      assert:
+        that:
+          - minikube_version in minikube_verify_version.stdout

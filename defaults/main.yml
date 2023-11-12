@@ -1,0 +1,8 @@
+---
+# See available releases: https://github.com/kubernetes/minikube/releases
+minikube_version: '1.32.0'
+minikube_platform: linux
+minikube_arch: amd64
+minikube_bin_path: /usr/local/bin/minikube
+minikube_download_url: https://github.com/kubernetes/minikube/releases/download/v{{ minikube_version }}/minikube-{{ minikube_platform }}-{{ minikube_arch }}
+minikube_checksum_url: "{{ minikube_download_url }}.sha256"

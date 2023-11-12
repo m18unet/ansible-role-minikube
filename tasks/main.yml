@@ -1,0 +1,17 @@
+---
+- name: Check the presence of the minikube binary.
+  stat:
+    path: "{{ minikube_bin_path }}"
+  register: minikube_check
+
+- name: Check the minikube version.
+  shell: "{{ minikube_bin_path }} version --short"
+  failed_when: false
+  changed_when: false
+  register: minikube_current_version
+
+- name: Install minikube v{{ minikube_version }}
+  include_tasks: install.yml
+  when: >-
+    not minikube_check.stat.exists
+    or minikube_version not in minikube_current_version.stdout

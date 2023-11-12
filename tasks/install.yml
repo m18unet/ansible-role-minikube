@@ -1,0 +1,14 @@
+---
+- name: Fetch the minikube SHA256 checksum
+  uri:
+    url: "{{ minikube_checksum_url }}"
+    return_content: true
+  register: minikube_sha256
+
+- name: Download the minikube binary.
+  get_url:
+    url: "{{ minikube_download_url }}"
+    dest: "{{ minikube_bin_path }}"
+    checksum: sha256:{{ minikube_sha256.content }}
+    mode: 0755
+  become: true

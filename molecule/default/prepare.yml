@@ -1,0 +1,11 @@
+---
+- name: Prepare
+  hosts: all
+  become: false
+  gather_facts: false
+
+  vars:
+    minikube_version: '1.30.0'
+
+  roles:
+    - m18unet.minikube
