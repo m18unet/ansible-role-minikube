@@ -19,7 +19,7 @@ None.
 ```yaml
 - hosts: all
   roles:
-    - m18uet.minikube
+    - m18unet.minikube
 ```
 
 ## License
